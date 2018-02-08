@@ -1,6 +1,6 @@
 
 var width = window.innerWidth,
-    height = window.innerHeight;
+    height = window.innerHeigt;
 
 var fill = d3.scale.category10();
 
