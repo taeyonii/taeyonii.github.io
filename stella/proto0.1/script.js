@@ -1,6 +1,5 @@
-
-var width = window.innerWidth,
-    height = window.innerHeight;
+var width = 1100,
+    height = 1000;
 
 var fill = d3.scale.category10();
 
@@ -14,7 +13,7 @@ var force = d3.layout.force()
     .on("tick", tick)
     .start();
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#board").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -35,7 +34,7 @@ svg.style("opacity", 1e-6)
     .duration(1000)
     .style("opacity", 1);
 
-d3.select("body")
+d3.select("#board")
     .on("mousedown", mousedown);
 
 function tick(e) {
@@ -58,4 +57,3 @@ function mousedown() {
   });
   force.resume();
 }
-
