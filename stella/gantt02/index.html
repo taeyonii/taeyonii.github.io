@@ -1,114 +1,131 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-
+<html>
 <head>
-  <style>
-
-  .bar{
-    fill: steelblue;
-  }
-
-  .bar:hover{
-    fill: brown;
-  }
-
-  .axis {
-    font: 10px sans-serif;
-  }
-
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-
-  </style>
+<title>Gantt Chart External Data Example</title>
+<link type="text/css" href="https://mbostock.github.io/d3/style.css" rel="stylesheet" />
+<link type="text/css" href="example.css" rel="stylesheet" />
 </head>
-
 <body>
-  
-<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-HELLO!
+  <a id="forkme_banner" href="https://dk8996.github.io/Gantt-Chart/" target="_blank">View on GitHub</a>
+  <a id="twittme_banner"
+    href="https://twitter.com/intent/tweet?hashtags=d3&original_referer=http%3A%2F%2Fdk8996.github.io%2FGantt-Chart%2F&text=D3%20Gantt%20Chart&tw_p=tweetbutton&url=http%3A%2F%2Fdk8996.github.com%2FGantt-Chart&screen_name=dk8996" target="_blank">Share
+    on Twitter</a>
+  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="https://static.mentful.com/gantt-chart-d3v21.js"></script>
+  <script type="text/javascript" src="example.js"></script>
+</body>
+</html>
+
+<style>
+  html,body,#wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+.chart {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.axis path,.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: #33b5e5;
+}
+
+.bar-red {
+  fill: #CC0000;
+}
+
+.bar-green {
+  fill: #669900;
+}
+
+.bar-blue {
+  fill: #33b5e5;
+}
+
+.bar-yellow {
+  fill: #ffbb33;
+}
+
+#forkme_banner {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 10;
+  padding: 10px 50px 10px 10px;
+  color: #fff;
+  background:
+    url('http://dk8996.github.io/Gantt-Chart/images/blacktocat.png')
+    #0090ff no-repeat 95% 50%;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  text-decoration: none;
+}
+
+#twittme_banner {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 180px;
+  z-index: 10;
+  padding: 10px 50px 10px 10px;
+  color: #fff;
+  background:
+    url('http://dk8996.github.io/Gantt-Chart/images/twitter.png')
+    #0090ff no-repeat 95% 50%;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  text-decoration: none;
+}
+</style>
+
 <script>
-// set the dimensions of the canvas
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+  example();
 
+function example() {
+    var tasks = [];
 
-// set the ranges
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+    var taskStatus = {
+  "Bill Johnson" : "bar",
+  "Joe Johnson" : "bar-red",
+    };
 
-var y = d3.scale.linear().range([height, 0]);
-
-// define the axis
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-
-// add the SVG element
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
-
-// load the data
-d3.json("data.json", function(error, data) {
-
-    data.forEach(function(d) {
-        d.Letter = d.Letter;
-        d.Freq = +d.Freq;
+    d3.json("data.json", function(error, json) {
+  if (error)
+      return console.warn(error);
+  var taskNames = [];
+  for ( var i = 0; i < json.length; i++) {
+      for ( var j = 0; j < json[i].values.length; j++) {
+    var role = json[i].values[j]["Role"];
+    var company = json[i].values[j]["Company"];
+    var roleAndCompany = role + "(" + company + ")";
+    var name = json[i]["name"];
+    taskNames.push(roleAndCompany);
+    tasks.push({
+        "startDate" : new Date(json[i].values[j]["from date"]),
+        "endDate" : new Date(json[i].values[j]["to date"]),
+        "taskName" : roleAndCompany,
+        "status" : name
     });
-  
-  // scale the range of the data
-  x.domain(data.map(function(d) { return d.Letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.Freq; })]);
+      }
+  }
+  var format = "%b-%e-%y";
+  var gantt = d3.gantt().taskTypes(taskNames).taskStatus(taskStatus).tickFormat(format);
+  gantt(tasks);
+    });
 
-  // add axis
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 5)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
-
-
-  // Add bar chart
-  svg.selectAll("bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.Freq); })
-      .attr("height", function(d) { return height - y(d.Freq); });
-
-});
+};
 
 </script>
-
-</body>
