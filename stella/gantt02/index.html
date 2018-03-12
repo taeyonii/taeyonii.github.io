@@ -1,114 +1,197 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-
-<head>
-	<style>
-
-  .bar{
-    fill: steelblue;
+<link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
+<style type="text/css">
+    text {
+      font-size: 30px;
+      font-family: 'Reenie Beanie', cursive;
+      text-align: center;
   }
-
-  .bar:hover{
-    fill: brown;
+  h1 {
+      font-size: 50px;
+      font-family: 'Reenie Beanie', cursive;
+      text-align: center;
+      margin:0;
   }
-
-	.axis {
-	  font: 10px sans-serif;
-	}
-
-	.axis path,
-	.axis line {
-	  fill: none;
-	  stroke: #000;
-	  shape-rendering: crispEdges;
-	}
-
-	</style>
-</head>
-
+  p{
+      font-size: 13px;
+      font-family: tahoma;
+      text-align: center;
+      margin:0px;
+      background-color: black;
+      color:white;
+      width:350px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+  }
+  circle {
+/*    stroke: #313131;
+stroke-width: 2;*/
+}
+</style>
 <body>
-	
-<script src="http://d3js.org/d3.v3.min.js"></script>
-
-<script>
-// set the dimensions of the canvas
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    <h1>Oranges are from...</h1>
+    <p>Food and Agriculture Organization of the United Nations<br>
+        <em>Citrus Fruit Statistics 2015</em></p>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script>
 
 
-// set the ranges
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-
-var y = d3.scale.linear().range([height, 0]);
-
-// define the axis
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
 
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
+            var width = screen.width,
+            height = screen.height,
+    padding = 1.5, // separation between same-color nodes
+    clusterPadding = 6, // separation between different-color nodes
+    maxRadius = 12;
+
+    var color = d3.scale.ordinal()
+    .range(["#FF7400", "#FFC100","#FF8B00","#FFB200","#FF6400"]);
+      // 25341
 
 
-// add the SVG element
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+
+      d3.text("word_groups.csv", function(error, text) {
+          if (error) throw error;
+          var colNames = "text,size,group\n" + text;
+          var data = d3.csv.parse(colNames);
+
+          data.forEach(function(d) {
+            d.size = +d.size;
+        });
 
 
-// load the data
-d3.json("data.json", function(error, data) {
-
-    data.forEach(function(d) {
-        d.Letter = d.Letter;
-        d.Freq = +d.Freq;
-    });
-	
-  // scale the range of the data
-  x.domain(data.map(function(d) { return d.Letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.Freq; })]);
-
-  // add axis
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 5)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
-
-
-  // Add bar chart
-  svg.selectAll("bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.Freq); })
-      .attr("height", function(d) { return height - y(d.Freq); });
-
+//unique cluster/group id's
+var cs = [];
+data.forEach(function(d){
+    if(!cs.contains(d.group)) {
+        cs.push(d.group);
+    }
 });
 
-</script>
+var n = data.length, // total number of nodes
+    m = cs.length; // number of distinct clusters
 
-</body>
+//create clusters and nodes
+var clusters = new Array(m);
+var nodes = [];
+for (var i = 0; i<n; i++){
+    nodes.push(create_nodes(data,i));
+}
+
+var force = d3.layout.force()
+.nodes(nodes)
+.size([width, height])
+.gravity(.02)
+.charge(0)
+.on("tick", tick)
+.start();
+
+var svg = d3.select("body").append("svg")
+.attr("width", width)
+.attr("height", height);
+
+
+var node = svg.selectAll("circle")
+.data(nodes)
+.enter().append("g").call(force.drag);
+
+
+node.append("circle")
+.style("fill", function (d) {
+    return color(d.cluster);
+})
+.attr("r", function(d){return d.radius})
+
+
+node.append("text")
+.attr("dy", ".3em")
+.style("text-anchor", "middle")
+.text(function(d) { return d.text.substring(0, d.radius / 3); });
+
+
+
+
+function create_nodes(data,node_counter) {
+  var i = cs.indexOf(data[node_counter].group),
+  r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
+  d = {
+    cluster: i,
+    radius: data[node_counter].size*0.02,
+    text: data[node_counter].text,
+    x: Math.cos(i / m * 2 * Math.PI) * 200 + width / 2 + Math.random(),
+    y: Math.sin(i / m * 2 * Math.PI) * 200 + height / 2 + Math.random()
+};
+if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
+return d;
+};
+
+
+
+function tick(e) {
+    node.each(cluster(10 * e.alpha * e.alpha))
+    .each(collide(.5))
+    .attr("transform", function (d) {
+        var k = "translate(" + d.x + "," + d.y + ")";
+        return k;
+    })
+
+}
+
+// Move d to be adjacent to the cluster node.
+function cluster(alpha) {
+    return function (d) {
+        var cluster = clusters[d.cluster];
+        if (cluster === d) return;
+        var x = d.x - cluster.x,
+        y = d.y - cluster.y,
+        l = Math.sqrt(x * x + y * y),
+        r = d.radius + cluster.radius;
+        if (l != r) {
+            l = (l - r) / l * alpha;
+            d.x -= x *= l;
+            d.y -= y *= l;
+            cluster.x += x;
+            cluster.y += y;
+        }
+    };
+}
+
+// Resolves collisions between d and all other circles.
+function collide(alpha) {
+    var quadtree = d3.geom.quadtree(nodes);
+    return function (d) {
+        var r = d.radius + maxRadius + Math.max(padding, clusterPadding),
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+        quadtree.visit(function (quad, x1, y1, x2, y2) {
+            if (quad.point && (quad.point !== d)) {
+                var x = d.x - quad.point.x,
+                y = d.y - quad.point.y,
+                l = Math.sqrt(x * x + y * y),
+                r = d.radius + quad.point.radius + (d.cluster === quad.point.cluster ? padding : clusterPadding);
+                if (l < r) {
+                    l = (l - r) / l * alpha;
+                    d.x -= x *= l;
+                    d.y -= y *= l;
+                    quad.point.x += x;
+                    quad.point.y += y;
+                }
+            }
+            return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+        });
+    };
+}
+});
+
+      Array.prototype.contains = function(v) {
+        for(var i = 0; i < this.length; i++) {
+            if(this[i] === v) return true;
+        }
+        return false;
+    };
+
+</script>
