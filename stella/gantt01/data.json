@@ -1,110 +1,112 @@
 [
   {
-    "startDate": "Mar 12 2018",
-    "endDate": "Mar 30 2018",
     "taskName": "TDK: Animated Series",
-    "status": "running"
+    "values":[
+      {
+        "startDate": "Mar 12 2018",
+        "endDate": "Mar 30 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Mar 18 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Mar 03 2018",
+        "endDate": "Apr 15 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Mar 22 2018",
+        "endDate": "May 15 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Mar 28 2018",
+        "endDate": "Apr 10 2018",
+        "status": "running"
+      }]
   },
   {
-    "startDate": "Mar 18 2018",
-    "endDate": "May 02 2018",
-    "taskName": "Route 66",
-    "status": "running"
-  },
-  {
-    "startDate": "Mar 03 2018",
-    "endDate": "Apr 15 2018",
     "taskName": "Tomorrow Digital Short",
-    "status": "running"
+    "values":[
+      {
+        "startDate": "Apr 18 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Apr 12 2018",
+        "endDate": "Apr 30 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Apr 08 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Apr 27 2018",
+        "endDate": "Apr 30 2018",
+        "status": "running"
+      }]
   },
   {
-    "startDate": "Mar 22 2018",
-    "endDate": "May 15 2018",
-    "taskName": "TDK: Animated Series",
-    "status": "running"
-  },
-  {
-    "startDate": "Mar 28 2018",
-    "endDate": "Apr 10 2018",
-    "taskName": "TDK: Animated Series",
-    "status": "running"
-  },
-  {
-    "startDate": "Apr 18 2018",
-    "endDate": "May 02 2018",
     "taskName": "Woodrow",
-    "status": "running"
+    "values":[
+      {
+        "startDate": "Apr 19 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Apr 25 2018",
+        "endDate": "May 27 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "Apr 16 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      }]
   },
   {
-    "startDate": "Apr 12 2018",
-    "endDate": "Apr 30 2018",
-    "taskName": "Tomorrow Digital Short",
-    "status": "running"
-  },
-  {
-    "startDate": "Apr 08 2018",
-    "endDate": "May 02 2018",
-    "taskName": "Woodrow",
-    "status": "running"
-  },
-  {
-    "startDate": "Apr 27 2018",
-    "endDate": "Apr 30 2018",
     "taskName": "Route 66",
-    "status": "running"
+    "values":[
+      {
+        "startDate": "Apr 12 2018",
+        "endDate": "May 30 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "May 05 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "May 18 2018",
+        "endDate": "May 30 2018",
+        "status": "running"
+      }]
   },
   {
-    "startDate": "Apr 19 2018",
-    "endDate": "May 02 2018",
-    "taskName": "TDK: Animated Series",
-    "status": "running"
-  },
-  {
-    "startDate": "Apr 25 2018",
-    "endDate": "May 27 2018",
     "taskName": "El Capitan",
-    "status": "running"
-  },
-  {
-    "startDate": "Apr 16 2018",
-    "endDate": "May 02 2018",
-    "taskName": "Tomorrow Digital Short",
-    "status": "running"
-  },
-  {
-    "startDate": "Apr 12 2018",
-    "endDate": "May 30 2018",
-    "taskName": "Route 66",
-    "status": "running"
-  },
-  {
-    "startDate": "May 05 2018",
-    "endDate": "May 02 2018",
-    "taskName": "El Capitan",
-    "status": "running"
-  },
-  {
-    "startDate": "May 18 2018",
-    "endDate": "May 30 2018",
-    "taskName": "TDK: Animated Series",
-    "status": "running"
-  },
-  {
-    "startDate": "May 18 2018",
-    "endDate": "Jun 02 2018",
-    "taskName": "Tomorrow Digital Short",
-    "status": "running"
-  },
-  {
-    "startDate": "May 12 2018",
-    "endDate": "Jun 30 2018",
-    "taskName": "TDK: Animated Series",
-    "status": "running"
-  },
-  {
-    "startDate": "May 22 2018",
-    "endDate": "May 02 2018",
-    "taskName": "Route 66",
-    "status": "running"
+    "values":[
+      {
+        "startDate": "May 18 2018",
+        "endDate": "Jun 02 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "May 12 2018",
+        "endDate": "Jun 30 2018",
+        "status": "running"
+      },
+      {
+        "startDate": "May 22 2018",
+        "endDate": "May 02 2018",
+        "status": "running"
+      }]
   }
 ]
