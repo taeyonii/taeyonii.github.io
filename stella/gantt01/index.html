@@ -35,12 +35,12 @@
 	}
 
 	.x.axis line{
-		stroke:#000;
+		stroke:#ededed;
 		stroke-width:1;
 	}
 
 	.y.axis path{
-		stroke:#000;
+		stroke:#ededed;
 		stroke-width:2;
 	}
 
@@ -48,11 +48,13 @@
 		font-family: 'Roboto', sans-serif;
 		font-size: 12px;
 		font-weight: 600;
+        fill:#ededed;
 	}
 	.y.axis {
 		font-family: 'Roboto', sans-serif;
 		font-size: 15px;
 		font-weight: 700;
+        fill:#ededed;
 	}
 
 	.noname{
@@ -80,7 +82,7 @@
 	}
 
 	#bar-failed {
-		opacity: .5;
+		opacity: .3;
 	}
 
 	#bar-running {
@@ -88,11 +90,12 @@
 	}
 
 	#bar-succeeded {
-		opacity: .9;
+		opacity: .6;
 	}
 
 	#bar-killed {
-		opacity: .8;
+		opacity: .5;
+        fill:#262626;
 	}
 
 </style>
@@ -106,7 +109,7 @@
 		top : 40,
 		right : 40,
 		bottom : 20,
-		left : 100
+		left : 250
 	};
 	var timeDomainStart = d3.time.day.offset(new Date(),-3);
 	var timeDomainEnd = d3.time.hour.offset(new Date(),+3);
@@ -121,7 +124,7 @@
     
     var width = wrapper.clientWidth - margin.right - margin.left;
 
-    var tickFormat = "%b";
+    var tickFormat = "%b/%a";
 
     var keyFunction = function(d) {
     	return d.startDate + d.taskName + d.endDate;
@@ -134,8 +137,8 @@
     var initTimeDomain = function() {
     	if (timeDomainMode === FIT_TIME_DOMAIN_MODE) {
     		if (tasks === undefined || tasks.length < 1) {
-    			timeDomainStart = d3.time.day.offset(new Date(), -3);
-    			timeDomainEnd = d3.time.hour.offset(new Date(), +3);
+    			timeDomainStart = d3.time.months.offset(new Date(), -3);
+    			timeDomainEnd = d3.time.months.offset(new Date(), +3);
     			return;
     		}
     		tasks.sort(function(a, b) {
@@ -150,7 +153,7 @@
     };
 
     var initAxis = function() {
-    	x = d3.time.scale().domain([ timeDomainStart, timeDomainEnd ]).range([ 0, width ]).clamp(true);
+    	x = d3.time.scale().domain([ timeDomainStart, timeDomainEnd ]).range([ 0, width ]).clamp(false);
     	y = d3.scale.ordinal().domain(taskTypes).rangeRoundBands([ 0, height - margin.top - margin.bottom ], .1);
     	xAxis = d3.svg.axis().scale(x).orient("top").tickFormat(d3.time.format(tickFormat)).tickSubdivide(true)
     	.tickSize(height-margin.top-margin.bottom).tickPadding(10);
@@ -321,67 +324,65 @@
 </script>
 
 <script>
-	var tasks = [
-	{"startDate":new Date("Sun Dec 09 01:36:45 EST 2012"),"endDate":new Date("Sun Dec 09 02:36:45 EST 2012"),"taskName":"E Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 04:56:32 EST 2012"),"endDate":new Date("Sun Dec 09 06:35:47 EST 2012"),"taskName":"A Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 06:29:53 EST 2012"),"endDate":new Date("Sun Dec 09 06:34:04 EST 2012"),"taskName":"D Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 05:35:21 EST 2012"),"endDate":new Date("Sun Dec 09 06:21:22 EST 2012"),"taskName":"P Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 05:00:06 EST 2012"),"endDate":new Date("Sun Dec 09 05:05:07 EST 2012"),"taskName":"D Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 03:46:59 EST 2012"),"endDate":new Date("Sun Dec 09 04:54:19 EST 2012"),"taskName":"P Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 04:02:45 EST 2012"),"endDate":new Date("Sun Dec 09 04:48:56 EST 2012"),"taskName":"N Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 03:27:35 EST 2012"),"endDate":new Date("Sun Dec 09 03:58:43 EST 2012"),"taskName":"E Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 01:40:11 EST 2012"),"endDate":new Date("Sun Dec 09 03:26:35 EST 2012"),"taskName":"A Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 03:00:03 EST 2012"),"endDate":new Date("Sun Dec 09 03:09:51 EST 2012"),"taskName":"D Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 01:21:00 EST 2012"),"endDate":new Date("Sun Dec 09 02:51:42 EST 2012"),"taskName":"P Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 01:08:42 EST 2012"),"endDate":new Date("Sun Dec 09 01:33:42 EST 2012"),"taskName":"N Job","status":"FAILED"},
-	{"startDate":new Date("Sun Dec 09 00:27:15 EST 2012"),"endDate":new Date("Sun Dec 09 00:54:56 EST 2012"),"taskName":"E Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 00:29:48 EST 2012"),"endDate":new Date("Sun Dec 09 00:44:50 EST 2012"),"taskName":"D Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 07:39:21 EST 2012"),"endDate":new Date("Sun Dec 09 07:43:22 EST 2012"),"taskName":"P Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 07:00:06 EST 2012"),"endDate":new Date("Sun Dec 09 07:05:07 EST 2012"),"taskName":"D Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 08:46:59 EST 2012"),"endDate":new Date("Sun Dec 09 09:54:19 EST 2012"),"taskName":"P Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 09:02:45 EST 2012"),"endDate":new Date("Sun Dec 09 09:48:56 EST 2012"),"taskName":"N Job","status":"RUNNING"},
-	{"startDate":new Date("Sun Dec 09 08:27:35 EST 2012"),"endDate":new Date("Sun Dec 09 08:58:43 EST 2012"),"taskName":"E Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 08:40:11 EST 2012"),"endDate":new Date("Sun Dec 09 08:46:35 EST 2012"),"taskName":"A Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 08:00:03 EST 2012"),"endDate":new Date("Sun Dec 09 08:09:51 EST 2012"),"taskName":"D Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 10:21:00 EST 2012"),"endDate":new Date("Sun Dec 09 10:51:42 EST 2012"),"taskName":"P Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sun Dec 09 11:08:42 EST 2012"),"endDate":new Date("Sun Dec 09 11:33:42 EST 2012"),"taskName":"N Job","status":"FAILED"},
-	{"startDate":new Date("Sun Dec 09 12:27:15 EST 2012"),"endDate":new Date("Sun Dec 09 12:54:56 EST 2012"),"taskName":"E Job","status":"SUCCEEDED"},
-	{"startDate":new Date("Sat Dec 08 23:12:24 EST 2012"),"endDate":new Date("Sun Dec 09 00:26:13 EST 2012"),"taskName":"A Job","status":"KILLED"}];
+example();
+	function example(){
+    var tasks = [];
 
 	var taskStatus = {
-		"SUCCEEDED" : "bar",
+		"SUCCEEDED" : "bar-succeeded",
 		"FAILED" : "bar-failed",
-		"RUNNING" : "bar-running",
+		"running" : "bar-running",
 		"KILLED" : "bar-killed"
 	};
+
 	var taskNames = [
-	"D Job",
-	"P Job",
-	"E Job",
-	"A Job",
-	"N Job"
+	"TDK: Animated Series",
+	"Route 66",
+	"Tomorrow Digital Short",
+	"Woodrow",
+	"El Capitan"
 	];
+
 	var taskNameCode = {
-		"D Job":"project01",
-		"P Job":"project02",
-		"E Job":"project03",
-		"A Job":"project04",
-		"N Job":"project05"
+		"TDK: Animated Series":"project01",
+		"Route 66":"project02",
+		"Tomorrow Digital Short":"project03",
+		"Woodrow":"project04",
+		"El Capitan":"project05"
 	};
+
+    d3.json("data.json",function(error,json){
+        if(error)
+            return console.warn(error);
+        var taskNames = [];
+        for (var i=0; i<json.length;i++){
+            for(var j=0;j<json[i].values.length;j++){
+                var name = json[i].values[j]["taskName"];
+                var status = json[i].values[j]["status"];
+                taskNames.push(name);
+                tasks.push({"startDate":new Date(json[i].values[j]["startDate"]),"endDate":new Date(json[i].values[j]["endDate"]), "taskName": name, "status": status
+            });
+            }
+        }
+    
 
 	tasks.sort(function(a, b) {
 		return a.endDate - b.endDate;
 	});
+
 	var maxDate = tasks[tasks.length - 1].endDate;
 	tasks.sort(function(a, b) {
 		return a.startDate - b.startDate;
 	});
+
 	var minDate = tasks[0].startDate;
 
-	var format = "%b";
+	var format = "%B";
 
 	var gantt = d3.gantt().taskTypes(taskNames).taskNameCode(taskNameCode).taskStatus(taskStatus).tickFormat(format);
 	gantt(tasks);
+});
+}
 </script>
 
 
