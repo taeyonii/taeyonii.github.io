@@ -49,70 +49,70 @@
 		font-size: 12px;
 		font-weight: 600;
         fill:#ededed;
-	}
-	.y.axis {
-		font-family: 'Roboto', sans-serif;
-		font-size: 15px;
-		font-weight: 700;
-        fill:#ededed;
-	}
+    }
+    .y.axis {
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      fill:#ededed;
+  }
 
-	.noname{
-		fill:black;
-	}
+  .noname{
+      fill:black;
+  }
 
-	.project01{
-		fill:#0080FF;
-	}
-	.project02{
-		fill:#FF8000;
-	}
-	.project03{
-		fill:#008000;
-	}
-	.project04{
-		fill:#CF0C06;
-	}
-	.project05{
-		fill:#7503E9;
-	}
+  .project01{
+      fill:#0080FF;
+  }
+  .project02{
+      fill:#FF8000;
+  }
+  .project03{
+      fill:#008000;
+  }
+  .project04{
+      fill:#CF0C06;
+  }
+  .project05{
+      fill:#7503E9;
+  }
 
-	#bar {
-		opacity: .2;
-	}
+  #bar {
+      opacity: .2;
+  }
 
-	#bar-failed {
-		opacity: .3;
-	}
+  #bar-failed {
+      opacity: .3;
+  }
 
-	#bar-running {
-		opacity: 1;
-	}
+  #bar-running {
+      opacity: 1;
+  }
 
-	#bar-succeeded {
-		opacity: .6;
-	}
+  #bar-succeeded {
+      opacity: .6;
+  }
 
-	#bar-killed {
-		opacity: .5;
-        fill:#262626;
-	}
+  #bar-killed {
+      opacity: .5;
+      fill:#262626;
+  }
 
 </style>
 
 <script>
 	d3.gantt = function() {
-	var FIT_TIME_DOMAIN_MODE = "fit";
-	var FIXED_TIME_DOMAIN_MODE = "fixed";
+       var FIT_TIME_DOMAIN_MODE = "fit";
+       var FIXED_TIME_DOMAIN_MODE = "fixed";
 
-	var margin = {
-		top : 40,
-		right : 40,
-		bottom : 20,
-		left : 250
-	};
-	var timeDomainStart = d3.time.day.offset(new Date(),-3);
-	var timeDomainEnd = d3.time.hour.offset(new Date(),+3);
+       var margin = {
+          top : 40,
+          right : 40,
+          bottom : 20,
+          left : 250
+      };
+      var timeDomainStart = d3.time.day.offset(new Date(),-3);
+      var timeDomainEnd = d3.time.hour.offset(new Date(),+3);
     var timeDomainMode = FIT_TIME_DOMAIN_MODE;// fixed or fit
     var taskTypes = [];
     var taskNameCode = [];
@@ -238,110 +238,111 @@
     	.attr("width", function(d) { 
     		return (x(d.endDate) - x(d.startDate)); 
     	})
-    	    	.attr("class", function(d){ 
-    		if(taskNameCode[d.taskName] == null){ return "noname";}
-    		return taskNameCode[d.taskName];
-    	})
-    	.attr("id", function(d){ 
-    		if(taskStatus[d.status] == null){ return "bar";}
-    		return taskStatus[d.status];
-    	})
+      .attr("class", function(d){ 
+          if(taskNameCode[d.taskName] == null){ return "noname";}
+          return taskNameCode[d.taskName];
+      })
+      .attr("id", function(d){ 
+          if(taskStatus[d.status] == null){ return "bar";}
+          return taskStatus[d.status];
+      })
 
-    	rect.exit().remove();
+      rect.exit().remove();
 
-    	svg.select(".x").transition().call(xAxis);
-    	svg.select(".y").transition().call(yAxis);
+      svg.select(".x").transition().call(xAxis);
+      svg.select(".y").transition().call(yAxis);
 
-    	return gantt;
-    };
+      return gantt;
+  };
 
-    gantt.margin = function(value) {
-    	if (!arguments.length)
-    		return margin;
-    	margin = value;
-    	return gantt;
-    };
+  gantt.margin = function(value) {
+   if (!arguments.length)
+      return margin;
+  margin = value;
+  return gantt;
+};
 
-    gantt.timeDomain = function(value) {
-    	if (!arguments.length)
-    		return [ timeDomainStart, timeDomainEnd ];
-    	timeDomainStart = +value[0], timeDomainEnd = +value[1];
-    	return gantt;
-    };
+gantt.timeDomain = function(value) {
+   if (!arguments.length)
+      return [ timeDomainStart, timeDomainEnd ];
+  timeDomainStart = +value[0], timeDomainEnd = +value[1];
+  return gantt;
+};
 
-    gantt.timeDomainMode = function(value) {
-    	if (!arguments.length)
-    		return timeDomainMode;
-    	timeDomainMode = value;
-    	return gantt;
+gantt.timeDomainMode = function(value) {
+   if (!arguments.length)
+      return timeDomainMode;
+  timeDomainMode = value;
+  return gantt;
 
-    };
+};
 
-    gantt.taskTypes = function(value) {
-    	if (!arguments.length)
-    		return taskTypes;
-    	taskTypes = value;
-    	return gantt;
-    };
+gantt.taskTypes = function(value) {
+   if (!arguments.length)
+      return taskTypes;
+  taskTypes = value;
+  return gantt;
+};
 
-    gantt.taskNameCode = function(value) {
-    	if (!arguments.length)
-    		return taskNameCode;
-    	taskNameCode = value;
-    	return gantt;
-    };
+gantt.taskNameCode = function(value) {
+   if (!arguments.length)
+      return taskNameCode;
+  taskNameCode = value;
+  return gantt;
+};
 
-    gantt.taskStatus = function(value) {
-    	if (!arguments.length)
-    		return taskStatus;
-    	taskStatus = value;
-    	return gantt;
-    };
+gantt.taskStatus = function(value) {
+   if (!arguments.length)
+      return taskStatus;
+  taskStatus = value;
+  return gantt;
+};
 
-    gantt.width = function(value) {
-    	if (!arguments.length)
-    		return width;
-    	width = +value;
-    	return gantt;
-    };
+gantt.width = function(value) {
+   if (!arguments.length)
+      return width;
+  width = +value;
+  return gantt;
+};
 
-    gantt.height = function(value) {
-    	if (!arguments.length)
-    		return height;
-    	height = +value;
-    	return gantt;
-    };
+gantt.height = function(value) {
+   if (!arguments.length)
+      return height;
+  height = +value;
+  return gantt;
+};
 
-    gantt.tickFormat = function(value) {
-    	if (!arguments.length)
-    		return tickFormat;
-    	tickFormat = value;
-    	return gantt;
-    };
+gantt.tickFormat = function(value) {
+   if (!arguments.length)
+      return tickFormat;
+  tickFormat = value;
+  return gantt;
+};
 
-    return gantt;
+return gantt;
 };
 </script>
 
 <script>
-example();
-	function example(){
-    var tasks = [];
+    example();
 
-	var taskStatus = {
-		"SUCCEEDED" : "bar-succeeded",
-		"FAILED" : "bar-failed",
-		"running" : "bar-running",
-		"KILLED" : "bar-killed"
-	};
+    function example(){
+        var tasks = [];
 
-	var taskNames = [
-	"TDK: Animated Series",
-	"Route 66",
-	"Tomorrow Digital Short",
-	"Woodrow",
-	"El Capitan"
-	];
+        var taskStatus = {
+          "SUCCEEDED" : "bar-succeeded",
+          "FAILED" : "bar-failed",
+          "running" : "bar-running",
+          "KILLED" : "bar-killed"
+      };
+
+	// var taskNames = [
+	// "TDK: Animated Series",
+	// "Route 66",
+	// "Tomorrow Digital Short",
+	// "Woodrow",
+	// "El Capitan"
+	// ];
 
 	var taskNameCode = {
 		"TDK: Animated Series":"project01",
@@ -356,32 +357,31 @@ example();
             return console.warn(error);
         var taskNames = [];
         for (var i=0; i<json.length;i++){
-            for(var j=0;j<json[i].values.length;j++){
-                var name = json[i].values[j]["taskName"];
+            for(var j=0; j<json[i].values.length; j++){
+                taskNames.push(json[i]["taskName"]);
                 var status = json[i].values[j]["status"];
-                taskNames.push(name);
-                tasks.push({"startDate":new Date(json[i].values[j]["startDate"]),"endDate":new Date(json[i].values[j]["endDate"]), "taskName": name, "status": status
+                tasks.push({"startDate":new Date(json[i].values[j]["startDate"]),"endDate":new Date(json[i].values[j]["endDate"]), "status": status
             });
             }
         }
-    
 
-	tasks.sort(function(a, b) {
-		return a.endDate - b.endDate;
-	});
 
-	var maxDate = tasks[tasks.length - 1].endDate;
-	tasks.sort(function(a, b) {
-		return a.startDate - b.startDate;
-	});
+        tasks.sort(function(a, b) {
+          return a.endDate - b.endDate;
+      });
 
-	var minDate = tasks[0].startDate;
+        var maxDate = tasks[tasks.length - 1].endDate;
+        tasks.sort(function(a, b) {
+          return a.startDate - b.startDate;
+      });
 
-	var format = "%B";
+        var minDate = tasks[0].startDate;
 
-	var gantt = d3.gantt().taskTypes(taskNames).taskNameCode(taskNameCode).taskStatus(taskStatus).tickFormat(format);
-	gantt(tasks);
-});
+        var format = "%B";
+
+        var gantt = d3.gantt().taskTypes(taskNames).taskNameCode(taskNameCode).taskStatus(taskStatus).tickFormat(format);
+        gantt(tasks);
+    });
 }
 </script>
 
