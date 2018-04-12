@@ -10,16 +10,16 @@
 	<a-scene embedded arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 		<a-assets>
 			<video id="video01" playsinline loop muted autoplay src="video/01.mp4"></video>
-			<video id="video02" playsinline autoplay loop muted src="video/02.mp4"></video>
+			<video id="video02" playsinline webkit-playsinline loop muted autoplay src="video/02.mp4"></video>
 		</a-assets>
 
 		<a-marker type='barcode' value = '0'>
+			<a-video src="#video01" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '1'>
 			<a-video src="#video02" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
 		</a-marker>
-				<!-- <a-marker type='barcode' value = '1'>
-					<a-video src="#video01" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '2'>
+				<!-- <a-marker type='barcode' value = '2'>
 					<a-video src="#video02" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
 				</a-marker>
 				<a-marker type='barcode' value = '3'>
