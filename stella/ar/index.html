@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 </head>
 <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"> </script>
@@ -9,46 +9,54 @@
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 		<a-assets>
-			<video id="video01" playsinline loop muted autoplay src="video/01.mp4"></video>
-			<video id="video02" playsinline webkit-playsinline loop muted autoplay src="video/02.mp4"></video>
+			<video id="video00" playsinline loop muted autoplay src="video/00.mp4"></video>
+			<video id="video01" playsinline webkit-playsinline loop muted autoplay src="video/01.mp4"></video>
+			<video id="video02" playsinline loop muted autoplay src="video/02.mp4"></video>
+			<video id="video03" playsinline webkit-playsinline loop muted autoplay src="video/03.mp4"></video>
+			<video id="video04" playsinline loop muted autoplay src="video/04.mp4"></video>
+			<video id="video05" playsinline webkit-playsinline loop muted autoplay src="video/05.mp4"></video>
+			<video id="video06" playsinline loop muted autoplay src="video/06.mp4"></video>
+			<video id="video07" playsinline webkit-playsinline loop muted autoplay src="video/07.mp4"></video>
+			<video id="video08" playsinline loop muted autoplay src="video/08.mp4"></video>
+			<video id="video09" playsinline webkit-playsinline loop muted autoplay src="video/09.mp4"></video>
 		</a-assets>
 
 		<a-marker type='barcode' value = '0'>
-			<a-video src="#video01" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video00" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '1'>
+			<a-video src="#video01" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '2'>
 			<a-video src="#video02" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
 		</a-marker>
-				<!-- <a-marker type='barcode' value = '2'>
-					<a-video src="#video02" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '3'>
-					<a-video src="#video03" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '4'>
-					<a-video src="#video04" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '5'>
-					<a-video src="#video05" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '6'>
-					<a-video src="#video06" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '7'>
-					<a-video src="#video07" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '8'>
-					<a-video src="#video08" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker>
-				<a-marker type='barcode' value = '9'>
-					<a-video src="#video09" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
-				</a-marker> -->
+		<a-marker type='barcode' value = '3'>
+			<a-video src="#video03" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '4'>
+			<a-video src="#video04" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '5'>
+			<a-video src="#video05" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '6'>
+			<a-video src="#video06" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '7'>
+			<a-video src="#video07" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '8'>
+			<a-video src="#video08" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '9'>
+			<a-video src="#video09" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+		</a-marker>
 				<a-entity camera></a-entity>
 
 				<!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
 				<!-- <a-video src="texture.mp4"></a-video> -->
 			</a-scene>
-			<div id="cover"></div>
+			<!-- <div id="cover"></div> -->
 
 		</body>
 		</html>
