@@ -7,66 +7,135 @@
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"> </script>
 
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene embedded arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
-		<a-assets>
-			<video id="video00" playsinline loop muted autoplay src="video/00.mp4"></video>
-			<video id="video01" playsinline webkit-playsinline loop muted autoplay src="video/01.mp4"></video>
-			<video id="video02" playsinline loop muted autoplay src="video/02.mp4"></video>
-			<video id="video03" playsinline webkit-playsinline loop muted autoplay src="video/03.mp4"></video>
-			<video id="video04" playsinline loop muted autoplay src="video/04.mp4"></video>
-			<video id="video05" playsinline webkit-playsinline loop muted autoplay src="video/05.mp4"></video>
-			<video id="video06" playsinline loop muted autoplay src="video/06.mp4"></video>
-			<video id="video07" playsinline webkit-playsinline loop muted autoplay src="video/07.mp4"></video>
-			<video id="video08" playsinline loop muted autoplay src="video/08.mp4"></video>
-			<video id="video09" playsinline webkit-playsinline loop muted autoplay src="video/09.mp4"></video>
-		</a-assets>
+	
+	<a-scene embedded arjs="debugUIEnabled: false; detectionMode: color_and_matrix; matrixCodeType: 3x3;">
 
+		
+		<a-assets>
+			<video id="video00" playsinline webkit-playsinline loop muted autoplay src="video/00.mp4"></video>
+			<video id="video01" playsinline webkit-playsinline loop muted autoplay src="video/01.mp4"></video>
+			<video id="video02" pplaysinline webkit-playsinline loop muted autoplay src="video/02.mp4"></video>
+			<video id="video03" playsinline webkit-playsinline loop muted autoplay src="video/03.mp4"></video>
+			<video id="video04" playsinline webkit-playsinline loop muted autoplay src="video/04.mp4"></video>
+			<video id="video05" playsinline webkit-playsinline loop muted autoplay src="video/05.mp4"></video>
+			<video id="video06" playsinline webkit-playsinline loop muted autoplay src="video/06.mp4"></video>
+			<video id="video07" playsinline webkit-playsinline loop muted autoplay src="video/07.mp4"></video>
+			<video id="video08" playsinline webkit-playsinline loop muted autoplay src="video/08.mp4"></video>
+			<video id="video09" playsinline webkit-playsinline loop muted autoplay src="video/09.mp4"></video>
+			<video id="video10" playsinline webkit-playsinline loop muted autoplay src="video/10.mp4"></video>
+			<video id="video11" playsinline webkit-playsinline loop muted autoplay src="video/11.mp4"></video>
+			<video id="video12" playsinline webkit-playsinline loop muted autoplay src="video/12.mp4"></video>
+			<video id="video13" playsinline webkit-playsinline loop muted autoplay src="video/13.mp4"></video>
+			<video id="video14" playsinline webkit-playsinline loop muted autoplay src="video/14.mp4"></video>
+			<video id="video15" playsinline webkit-playsinline loop muted autoplay src="video/15.mp4"></video>
+			<video id="video16" playsinline webkit-playsinline loop muted autoplay src="video/16.mp4"></video>
+			<video id="video17" playsinline webkit-playsinline loop muted autoplay src="video/17.mp4"></video>
+			<video id="video18" playsinline webkit-playsinline loop muted autoplay src="video/18.mp4"></video>
+			<video id="video19" playsinline webkit-playsinline loop muted autoplay src="video/19.mp4"></video>
+			<video id="video20" playsinline webkit-playsinline loop muted autoplay src="video/20.mp4"></video>
+			<video id="video21" playsinline webkit-playsinline loop muted autoplay src="video/21.mp4"></video>
+			<video id="video22" playsinline webkit-playsinline loop muted autoplay src="video/22.mp4"></video>
+			<video id="video23" playsinline webkit-playsinline loop muted autoplay src="video/23.mp4"></video>
+			<video id="video24" playsinline webkit-playsinline loop muted autoplay src="video/24.mp4"></video>
+			<video id="video25" playsinline webkit-playsinline loop muted autoplay src="video/25.mp4"></video>
+			<video id="video26" playsinline webkit-playsinline loop muted autoplay src="video/26.mp4"></video>
+			<video id="video27" playsinline webkit-playsinline loop muted autoplay src="video/27.mp4"></video>
+			<video id="video28" playsinline webkit-playsinline loop muted autoplay src="video/28.mp4"></video>
+			<video id="video29" playsinline webkit-playsinline loop muted autoplay src="video/29.mp4"></video>
+		</a-assets>
+		
 		<a-marker type='barcode' value = '0'>
-			<a-video src="#video00" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video00" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '1'>
-			<a-video src="#video01" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video01" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '2'>
-			<a-video src="#video02" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video02" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '3'>
-			<a-video src="#video03" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video03" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '4'>
-			<a-video src="#video04" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video04" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '5'>
-			<a-video src="#video05" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video05" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '6'>
-			<a-video src="#video06" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video06" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '7'>
-			<a-video src="#video07" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video07" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '8'>
-			<a-video src="#video08" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video08" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
 		<a-marker type='barcode' value = '9'>
-			<a-video src="#video09" width="1.6" height="0.9" position="0 0 0" rotateZ="90deg"></a-video>
+			<a-video src="#video09" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
 		</a-marker>
-				<a-entity camera></a-entity>
+		<a-marker type='barcode' value = '10'>
+			<a-video src="#video10" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '11'>
+			<a-video src="#video11" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '12'>
+			<a-video src="#video12" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '13'>
+			<a-video src="#video13" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '14'>
+			<a-video src="#video14" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '15'>
+			<a-video src="#video15" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '16'>
+			<a-video src="#video16" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '17'>
+			<a-video src="#video17" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '18'>
+			<a-video src="#video18" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '19'>
+			<a-video src="#video19" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '20'>
+			<a-video src="#video20" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '21'>
+			<a-video src="#video21" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '22'>
+			<a-video src="#video22" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '23'>
+			<a-video src="#video23" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '24'>
+			<a-video src="#video24" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '25'>
+			<a-video src="#video25" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '26'>
+			<a-video src="#video26" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '27'>
+			<a-video src="#video27" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '28'>
+			<a-video src="#video28" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-marker type='barcode' value = '29'>
+			<a-video src="#video29" width="4" height="3" position="0 0 0" rotation="90 0 0"></a-video>
+		</a-marker>
+		<a-entity camera></a-entity>
+	</a-scene>
 
-				<!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
-				<!-- <a-video src="texture.mp4"></a-video> -->
-			</a-scene>
-			<!-- <div id="cover"></div> -->
-
-		</body>
-		</html>
-
-		<style>
-			#cover{
-				width:400px;
-				height:400px;
-				background-color: tomato;
-				z-index: 10;
-			}
-
-		</style>
+</body>
+</html>
