@@ -3,40 +3,88 @@
 <head>
   <style>
     #map {
-      height: 400px;
-      width: 100%;
+      height: 480px;
+      width: 800px;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
   <script>
-    function initMap() {
-      var home = {lat: 40.6886629, lng: -73.95045920000001};
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: home
-      });
-      var image = "marker.png";
-      var marker = new google.maps.Marker({
-        position: home,
-        map: map,
-        title: "Home sweet home",
-        icon: image,
-        animation: google.maps.Animation.DROP,
-      });
-      marker.addListener('click', toggleBounce);
-    }
-    function toggleBounce() {
-      if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-      } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
+
+      // This example creates a 2-pixel-wide red polyline showing the path of
+      // the first trans-Pacific flight between Oakland, CA, and Brisbane,
+      // Australia which was made by Charles Kingsford Smith.
+
+      function initMap() {
+
+        var midpoint = {lat: 40.732910, lng: -73.993669};
+        var unionSq = {lat: 40.735967, lng: -73.990341};
+        var washingtonSq = {lat:40.731002, lng:  -73.997417};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: midpoint
+        });
+
+        var image = "marker.png";
+
+        var flightPlanCoordinates = [
+        {lat: 40.735227, lng:-73.991704},
+        {lat:40.734823,  lng:-73.990707},
+        {lat:40.735310, lng:-73.989981},
+        {lat:40.736577, lng:-73.989065},
+        {lat:40.737113, lng:-73.990341},
+        {lat:40.735227, lng:-73.991704},//UnionSq
+        {lat:40.736061, lng:-73.993664},
+        {lat:40.731411, lng:-73.996988},
+        {lat:40.732222, lng:-73.998631},//WashingtonSq
+        {lat:40.731053, lng:-73.999616},
+        {lat:40.729571, lng:-73.996578},
+        {lat:40.730654, lng:-73.995663},
+        {lat:40.730718, lng:-73.995579},
+        {lat:40.731411, lng:-73.996988}
+        ];
+
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+
+        var marker_unionSq = new google.maps.Marker({
+          position: unionSq,
+          map: map,
+          title: "Union Square Park",
+          // icon: image,
+          animation: google.maps.Animation.DROP,
+        });
+        var marker_washingtonSq = new google.maps.Marker({
+          position: washingtonSq,
+          map: map,
+          title: "Washington Square Park",
+          // icon: image,
+          animation: google.maps.Animation.DROP,
+        });
+
+        flightPath.setMap(map);
+
+        marker_unionSq.addListener('click', toggleBounce);
+        marker_washingtonSq.addListener('click', toggleBounce);
       }
-    }
+
+      function toggleBounce(marker) {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1DJ9_q8lprpP1DvjXfgOoJSsMilU1Wi4&callback=initMap">
   </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1DJ9_q8lprpP1DvjXfgOoJSsMilU1Wi4&callback=initMap">
-</script>
 </body>
 </html>
