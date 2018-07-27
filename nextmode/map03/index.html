@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>  
+  <style>
+    #map {
+      height: 480px;
+      width: 98%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+
+       // Initialize Firebase
+       var config = {
+        apiKey: "AIzaSyB94yVZjlSbDrqDp7Huqs5fSZ90whBNiNs",
+        authDomain: "nextmode-gps.firebaseapp.com",
+        databaseURL: "https://nextmode-gps.firebaseio.com",
+        projectId: "nextmode-gps",
+        storageBucket: "nextmode-gps.appspot.com",
+        messagingSenderId: "900293086853"
+      };
+
+      firebase.initializeApp(config);
+
+      var database = firebase.database();
+
+      console.log(database);
+
+      function initMap() {
+
+        var myLocation = {lat: 40.6885982908709, lng: -73.95070370494};
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: myLocation
+        });
+
+
+        var marker_me = new google.maps.Marker({
+          position: myLocation,
+          map: map,
+          animation: google.maps.Animation.DROP,
+        });
+
+        marker_unionSq.addListener('click', toggleBounce);
+        marker_washingtonSq.addListener('click', toggleBounce);
+      }
+
+      function toggleBounce(marker) {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1DJ9_q8lprpP1DvjXfgOoJSsMilU1Wi4&callback=initMap">
+  </script>
+  <style>
+    #map{
+      margin:auto;
+    }
+  </style>
+</body>
+</html>
