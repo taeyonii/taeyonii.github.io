@@ -38,49 +38,50 @@
 
 <script>
 
+
   var database = firebase.database();
   
   var myLat=0.0;
   var myLong=0.0;
 
-  var midpoint = {lat: 40.733278, lng: -73.993593};
-  var unionSq = {lat: 40.735967, lng: -73.990341};
-  var washingtonSq = {lat:40.731002, lng:  -73.997417};
+
+
+  // var latitude = dataRef.child('latitude').on('value',function(snapshot){
+  //   myLat = snapshot.val();
+  //   console.log(myLat);
+
+  // });
+  // var longitude = dataRef.child('longitude').on('value',function(snapshot){
+  //   console.log(snapshot.val());
+  //   myLong = parseFloat(snapshot.val());
+  // });
+
+  // console.log("myLat: " + myLat);
+  // console.log("myLong: " + myLong);
+
+
 
   function initMap() {
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 16,
-      center: midpoint
-    });
+    // console.log("myLat: " + myLat);
+    // console.log("myLong: " + myLong);
+    
+// console.log("my"+myLocation);
 
-    var movingPlanCoordinates = [
-        {lat: 40.735227, lng:-73.991704},
-        {lat:40.734823,  lng:-73.990707},
-        {lat:40.735310, lng:-73.989981},
-        {lat:40.736577, lng:-73.989065},
-        {lat:40.737113, lng:-73.990341},
-        {lat:40.735227, lng:-73.991704},//UnionSq
-        {lat:40.736061, lng:-73.993664},
-        {lat:40.731411, lng:-73.996988},
-        {lat:40.732222, lng:-73.998631},//WashingtonSq
-        {lat:40.731053, lng:-73.999616},
-        {lat:40.729571, lng:-73.996578},
-        {lat:40.730654, lng:-73.995663},
-        {lat:40.730718, lng:-73.995579},
-        {lat:40.731411, lng:-73.996988}
-        ];
+var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 15,
+  center: {lat:40.688503, lng:-73.950691}
+});
 
-    var movingPath = new google.maps.Polyline({
-      path: movingPlanCoordinates,
-      geodesic: true,
-      strokeColor: '#FF0000',
-      strokeOpacity: 1.0,
-      strokeWeight: 3
-    });
 
-    movingPath.setMap(map);
+    // var marker_me = new google.maps.Marker({
+    //   position: myLocation,
+    //   map: map,
+    //   animation: google.maps.Animation.DROP,
+    // });
 
+    // marker_unionSq.addListener('click', toggleBounce);
+    // marker_washingtonSq.addListener('click', toggleBounce);
     var markerTemp;
     
     var myLocation;
