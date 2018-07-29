@@ -68,16 +68,20 @@
         {lat:40.729571, lng:-73.996578},
         {lat:40.730654, lng:-73.995663},
         {lat:40.730718, lng:-73.995579},
-        {lat:40.731411, lng:-73.996988}
+        {lat:40.731411, lng:-73.996988},
+        {lat:40.730718, lng:-73.995579},
+        {lat: 40.735227, lng:-73.991704}
         ];
 
     var movingPath = new google.maps.Polyline({
       path: movingPlanCoordinates,
       geodesic: true,
-      strokeColor: '#FF0000',
+      strokeColor: '#000000',
       strokeOpacity: 1.0,
       strokeWeight: 3
     });
+
+    var logo = "logo.png";
 
     movingPath.setMap(map);
 
@@ -104,6 +108,7 @@
       var marker = new google.maps.Marker({
         position: myLocation,
         map: map,
+        icon: logo
       });
 
       markerTemp=marker;
