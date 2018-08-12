@@ -20,7 +20,7 @@
 
 <style>
   #map {
-    height: 480px;
+    height: 600px;
     width: 98%;
   }
 </style>
@@ -43,56 +43,76 @@
   var myLat=0.0;
   var myLong=0.0;
 
-  var midpoint = {lat: 40.733278, lng: -73.993593};
+  // var midpoint = {lat: 40.733278, lng: -73.993593};
+  var midpoint = {lat:40.742657, lng:-74.002102};
   var unionSq = {lat: 40.735967, lng: -73.990341};
   var washingtonSq = {lat:40.731002, lng:  -73.997417};
 
   function initMap() {
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 16,
+      zoom: 15,
       center: midpoint
     });
 
     var movingPlanCoordinates = [
-        {lat: 40.735227, lng:-73.991704},
-        {lat:40.734823,  lng:-73.990707},
-        {lat:40.735310, lng:-73.989981},
-        {lat:40.736577, lng:-73.989065},
-        {lat:40.737113, lng:-73.990341},
-        {lat:40.735227, lng:-73.991704},//UnionSq
-        {lat:40.736061, lng:-73.993664},
-        {lat:40.731411, lng:-73.996988},
-        {lat:40.732222, lng:-73.998631},//WashingtonSq
-        {lat:40.731053, lng:-73.999616},
-        {lat:40.729571, lng:-73.996578},
-        {lat:40.730654, lng:-73.995663},
-        {lat:40.730718, lng:-73.995579},
-        {lat:40.731411, lng:-73.996988},
-        {lat:40.730718, lng:-73.995579},
-        {lat: 40.735227, lng:-73.991704}
+        // {lat: 40.735227, lng:-73.991704},
+        // {lat:40.734823,  lng:-73.990707},
+        // {lat:40.735310, lng:-73.989981},
+        // {lat:40.736577, lng:-73.989065},
+        // {lat:40.737113, lng:-73.990341},
+        // {lat:40.735227, lng:-73.991704},//UnionSq
+        // {lat:40.736061, lng:-73.993664},
+        // {lat:40.731411, lng:-73.996988},
+        // {lat:40.732222, lng:-73.998631},//WashingtonSq
+        // {lat:40.731053, lng:-73.999616},
+        // {lat:40.729571, lng:-73.996578},
+        // {lat:40.730654, lng:-73.995663},
+        // {lat:40.730718, lng:-73.995579},
+        // {lat:40.731411, lng:-73.996988},
+        // {lat:40.730718, lng:-73.995579},
+        // {lat: 40.735227, lng:-73.991704}
+        // ];
+        {lat:40.734830, lng:-73.992878},
+        {lat:40.735334, lng:-73.994125},
+        {lat:40.736019, lng:-73.993643},
+        {lat:40.741673, lng:-74.007018},
+        {lat:40.740299, lng:-74.007950},
+        {lat:40.739365, lng:-74.008053},//Whitney
+        {lat:40.739338, lng:-74.009683},
+        {lat:40.740686, lng:-74.008958},
+        {lat:40.741442, lng:-74.008711},
+        {lat:40.748350, lng:-74.003682},
+        {lat:40.751276, lng:-74.010564},
+        {lat:40.751078, lng:-74.010637},
+        {lat:40.750215, lng:-74.008481},
+        {lat:40.748652, lng:-74.007789},
+        {lat:40.743970, lng:-74.008491},
+        {lat:40.737332, lng:-73.992670},
+        {lat:40.735334, lng:-73.994125},
+        {lat:40.734830, lng:-73.992878}
         ];
 
-    var movingPath = new google.maps.Polyline({
-      path: movingPlanCoordinates,
-      geodesic: true,
-      strokeColor: '#000000',
-      strokeOpacity: 1.0,
-      strokeWeight: 3
-    });
+        var movingPath = new google.maps.Polyline({
+          path: movingPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
 
-    var logo = "logo.png";
+        var logo = "logo.png";
 
-    movingPath.setMap(map);
+        movingPath.setMap(map);
 
-    var markerTemp;
-    
-    var myLocation;
+        var markerTemp;
 
-    var dataRef = firebase.database().ref().on('value',function(data){
+        var myLocation;
 
-      myLocation=data.val();
-      
+        var dataRef = firebase.database().ref().on('value',function(data){
+
+          myLocation=data.val();
+
       // markers[1] = new google.maps.Marker({
       //   position: home,
       //   map: map,
@@ -108,7 +128,8 @@
       var marker = new google.maps.Marker({
         position: myLocation,
         map: map,
-        icon: logo
+        icon: logo,
+        animation: google.maps.Animation.BOUNCE,
       });
 
       markerTemp=marker;
@@ -126,9 +147,9 @@
 
 
     });
-  }
+      }
 
-</script>
+    </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1DJ9_q8lprpP1DvjXfgOoJSsMilU1Wi4&callback=initMap">
-</script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1DJ9_q8lprpP1DvjXfgOoJSsMilU1Wi4&callback=initMap">
+    </script>
